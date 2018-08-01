@@ -3,9 +3,8 @@ import scipy.io as sio
 import os
 from viewer import multi_slice_viewer
 from utils import getFetalFolder
-#import keras
 
-A = sio.loadmat(r'C:\Users\Shai\Documents\MSc\Project\FromMichael\Fetal envelope\MRscans\78.mat')
+A = sio.loadmat(os.path.join(getFetalFolder('MRscans'), r'78.mat'))
 print(A.keys())
 print(A['UID'])
 
@@ -13,7 +12,8 @@ im3d = A['volume']
 gt = A['masks'][0, 2]
 seg = A['masks'][0, 9]
 print(im3d.shape)
-#multi_slice_viewer(im3d)
+
+multi_slice_viewer(im3d)
 
 p = getFetalFolder('MRscans')
 l = os.listdir(p)
